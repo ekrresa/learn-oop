@@ -1,4 +1,4 @@
-var User = require("./user");
+var User = require("../User/user");
 
 describe("User Object Tests", function() {
   var felix = new User("Felix", "felix@gmail.com", "passed");
