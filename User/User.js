@@ -19,23 +19,26 @@ function User(name, email, password) {
 User.prototype = {
   constructor: User,
   getUser: function(id) {
-    console.log("The ID of " + this.name + "is" + db.usersDB[this.id]);
+    console.log("The ID of " + this.name + " is " + db.usersDB[this.id].id);
     return db.usersDB[this.id];
   },
   updateUser: function(prop, info) {
     if (this.hasOwnProperty(prop)) {
-      this.prop = info;
+      this[prop] = info;
       return console.log(this.name + "info updated successfully!");
     }
-    return console.log("User property does not exist");
+    console.log("User property does not exist");
+    return "User property does not exist";
   },
   searchUser: function(name) {
     for (const user of db.usersDB) {
       if (user.name === name) {
-        console.log("User found");
+        console.log("User found", user);
         return user;
       }
     }
+    console.log("Person does not exist");
+    return false;
   }
 };
 
