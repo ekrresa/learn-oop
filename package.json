@@ -4,7 +4,7 @@
   "description": "Simulation of an E-commerce site functionality using Objects and knowledge of OOP concepts, Prototypical Inheritance",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "repository": {
     "type": "git",
