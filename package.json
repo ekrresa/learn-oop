@@ -1,0 +1,23 @@
+{
+  "name": "learn-oop",
+  "version": "1.0.0",
+  "description": "Simulation of an E-commerce site functionality using Objects and knowledge of OOP concepts, Prototypical Inheritance",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ochuko56/learn-oop.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ochuko56/learn-oop/issues"
+  },
+  "homepage": "https://github.com/ochuko56/learn-oop#readme",
+  "devDependencies": {
+    "jest": "^24.7.1"
+  }
+}
