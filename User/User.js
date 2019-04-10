@@ -1,4 +1,4 @@
-var db = require("./database");
+var db = require("../database");
 
 function User(name, email, password) {
   this.name = name;
