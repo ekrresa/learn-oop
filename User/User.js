@@ -38,3 +38,5 @@ User.prototype = {
     }
   }
 };
+
+module.exports = User;
