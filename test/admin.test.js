@@ -19,4 +19,8 @@ describe("Admin Object Tests", function() {
     kingsley.updateUser("password", "renee");
     expect(kingsley.password).toBe("renee");
   });
+
+  test("should return all users from DB", function() {
+    expect(kingsley.readAllUsers()).toEqual(expect.any(Array));
+  });
 });
