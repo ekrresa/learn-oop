@@ -22,6 +22,11 @@ describe("Admin Object Tests", function() {
     expect(kingsley.password).toBe("renee");
   });
 
+  test("should search for a user", function() {
+    var search = mike.searchUser("Felix");
+    expect(search.name).toBe("Felix");
+  });
+
   test("should return all users from DB", function() {
     expect(kingsley.readAllUsers()).toEqual(expect.any(Array));
   });
