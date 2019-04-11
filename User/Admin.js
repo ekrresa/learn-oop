@@ -22,4 +22,19 @@ Admin.prototype.readAllUsers = function() {
   return userArray;
 };
 
+Admin.prototype.deleteUser = function(name) {
+  console.log(this.isAdmin);
+
+  var len = db.usersDB.length;
+
+  for (var i = 0; i < len; i++) {
+    if (db.usersDB[i].name === name) {
+      var removedUser = db.usersDB.splice(i, 1);
+      console.log("User deleted");
+      break;
+    }
+  }
+  return name + " has been deleted";
+};
+
 module.exports = Admin;

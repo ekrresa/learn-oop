@@ -1,9 +1,11 @@
 var User = require("../User/user");
 var Admin = require("../User/admin");
+var db = require("../database");
 
 describe("Admin Object Tests", function() {
   var kingsley = new Admin("Kingsley", "kingsley@gmail.com", "king");
   var mike = new Admin("Mike", "mike@gmail.com", "ross");
+  var felix = new User("Felix", "felix@gmail.com", "fudge");
 
   test("should inherit from User", function() {
     expect(kingsley instanceof User).toBe(true);
@@ -22,5 +24,12 @@ describe("Admin Object Tests", function() {
 
   test("should return all users from DB", function() {
     expect(kingsley.readAllUsers()).toEqual(expect.any(Array));
+  });
+
+  test("should delete a user", function() {
+    expect(kingsley.deleteUser("Mike")).toBe("Mike has been deleted");
+  });
+  test("only admins should delete a user", function() {
+    expect(felix.deleteUser("Kingsley")).toBeFalsy();
   });
 });
