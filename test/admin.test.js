@@ -29,7 +29,10 @@ describe("Admin Object Tests", function() {
   test("should delete a user", function() {
     expect(kingsley.deleteUser("Mike")).toBe("Mike has been deleted");
   });
+  test("should delete all users", function() {
+    expect(kingsley.deleteAllUsers()).toBe("All users deleted");
+  });
   test("only admins should delete a user", function() {
-    expect(felix.deleteUser("Kingsley")).toBeFalsy();
+    expect("deleteUser" in felix).toBeFalsy();
   });
 });

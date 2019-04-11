@@ -29,12 +29,19 @@ Admin.prototype.deleteUser = function(name) {
 
   for (var i = 0; i < len; i++) {
     if (db.usersDB[i].name === name) {
-      var removedUser = db.usersDB.splice(i, 1);
+      db.usersDB.splice(i, 1);
       console.log("User deleted");
       break;
     }
   }
   return name + " has been deleted";
+};
+
+Admin.prototype.deleteAllUsers = function() {
+  db.usersDB.length = 0;
+  console.log("All users deleted");
+
+  return "All users deleted";
 };
 
 module.exports = Admin;
