@@ -6,14 +6,19 @@ function User(name, email, password) {
   this.password = password;
   this.id = db.usersDB.length;
 
-  var person = {
-    id: this.id,
-    name: this.name,
-    email: this.email,
-    password: this.password
-  };
+  var self = this;
 
-  db.usersDB.push(person);
+  function createUser() {
+    var person = {
+      id: self.id,
+      name: self.name,
+      email: self.email,
+      password: self.password
+    };
+
+    db.usersDB.push(person);
+  }
+  createUser();
 }
 
 User.prototype = {
