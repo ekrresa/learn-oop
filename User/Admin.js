@@ -1,5 +1,6 @@
 var db = require("../database");
 var User = require("./user");
+var Order = require("../Order/order");
 
 function Admin(name, email, password) {
   User.call(this, name, email, password);
@@ -42,6 +43,39 @@ Admin.prototype.deleteAllUsers = function() {
   console.log("All users deleted");
 
   return "All users deleted";
+};
+
+Admin.prototype.readAllOrders = function() {
+  console.log("Reading orders...");
+  var orderArray = Order.prototype.readAll();
+  return orderArray;
+};
+
+Admin.prototype.readOneOrder = function(id) {
+  console.log("Reading...");
+
+  var foundOrder = Order.prototype.readOne(id);
+  console.log("Order found");
+  return foundOrder;
+};
+
+Admin.prototype.editOrder = function(id, prop, info) {
+  var newOrder = Order.prototype.update(id, prop, info);
+  console.log(newOrder);
+};
+
+Admin.prototype.deleteOrder = function(id) {
+  var foundOrder = Order.prototype.deleteOne(id);
+  if (foundOrder) {
+    console.log("Order deleted");
+    return;
+  }
+  return console.log("Order not found");
+};
+
+Admin.prototype.deleteAllOrders = function() {
+  Order.prototype.deleteAll();
+  return console.log("Order DB emptied");
 };
 
 module.exports = Admin;
