@@ -65,9 +65,17 @@ Admin.prototype.readOneOrder = function(id) {
 };
 
 Admin.prototype.editOrder = function(id, prop, info) {
-  var adjustedOrder = Order.prototype.update(id, prop, info);
-  console.log(adjustedOrder);
-  return adjustedOrder;
+  var result = Order.prototype.update(id, prop, info);
+  if (result === "Only products can be edited") {
+    console.log("Only products can be edited");
+    return "Only products can be edited";
+  } else if (result) {
+    console.log("Order was updated");
+    return result;
+  } else {
+    console.log("Order does not exist");
+    return "Order does not exist";
+  }
 };
 
 Admin.prototype.deleteOrder = function(id) {

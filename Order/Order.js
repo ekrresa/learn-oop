@@ -25,10 +25,15 @@ Order.prototype = {
   },
   update: function(id, prop, info) {
     var foundOrder = Order.prototype.readOne(id);
-    if (foundOrder.hasOwnProperty(prop)) {
-      foundOrder[prop] = info;
+
+    if (foundOrder && foundOrder.hasOwnProperty(prop)) {
+      if (prop === "products") {
+        foundOrder[prop] = info;
+        return foundOrder;
+      }
+      return "Only products can be edited";
     }
-    return foundOrder;
+    return false;
   },
   deleteOne: function(id) {
     var len = db.ordersDB.length;
