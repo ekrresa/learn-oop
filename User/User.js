@@ -20,13 +20,22 @@ function User(name, email, password) {
 User.prototype = {
   constructor: User,
   getUser: function(id) {
-    console.log("The ID of " + this.name + " is " + db.usersDB[this.id].id);
-    return db.usersDB[this.id];
+    console.log("Getting user...");
+    if (db.usersDB[id]) {
+      console.log("User found");
+      return db.usersDB[this.id];
+    }
+    console.log("User does not exist");
+    return "User does not exist";
   },
   updateUser: function(prop, info) {
-    if (this.hasOwnProperty(prop)) {
+    console.log("Updating...");
+    if (prop === "id") {
+      console.log("ID cannot be changed");
+      return "Operation not allowed";
+    } else if (this.hasOwnProperty(prop)) {
       this[prop] = info;
-      return console.log(this.name + "info updated successfully!");
+      return console.log(this.name + " info updated successfully!");
     }
     console.log("User property does not exist");
     return "User property does not exist";
@@ -43,6 +52,10 @@ User.prototype = {
   },
   makeOrder: function() {
     console.log("Ordering...");
+    if (arguments.length === 0) {
+      console.log("Order failed");
+      return "Valid order needs products";
+    }
     var newOrder = new Order();
     newOrder.user_id = this.id;
     newOrder.products = Array.prototype.slice.call(arguments);
@@ -51,12 +64,5 @@ User.prototype = {
     return newOrder;
   }
 };
-
-// var felix = new User("Felix", "felix@gmail.com", "fudge");
-// var mike = new User("Mike", "mike@gmail.com", "ross");
-// felix.makeOrder("rice", "beans");
-// mike.makeOrder("rice", "indomie");
-// felix.makeOrder("onions", "beans", "beer");
-// console.log(db.ordersDB);
 
 module.exports = User;
