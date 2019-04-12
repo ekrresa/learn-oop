@@ -38,9 +38,12 @@ Admin.prototype.deleteUser = function(name) {
 };
 
 Admin.prototype.deleteAllUsers = function() {
+  if (db.usersDB.length === 0) {
+    console.log("Users DB is already empty");
+    return "No users presently";
+  }
   db.usersDB.length = 0;
   console.log("All users deleted");
-
   return "All users deleted";
 };
 
