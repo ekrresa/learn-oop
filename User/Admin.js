@@ -19,10 +19,7 @@ Admin.prototype.readAllUsers = function() {
     return "Users DB is empty";
   }
 
-  var userArray = [];
-  for (var i = 0; i < len; i++) {
-    userArray.push(db.usersDB[i]);
-  }
+  var userArray = db.usersDB;
   console.log("Users read successfully", userArray);
 
   return userArray;
