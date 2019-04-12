@@ -1,6 +1,6 @@
 var db = require("../database");
-var User = require("./user");
-var Order = require("../Order/order");
+var User = require("./User");
+var Order = require("../Order/Order");
 
 function Admin(name, email, password) {
   User.call(this, name, email, password);

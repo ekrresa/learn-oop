@@ -1,5 +1,5 @@
 var db = require("../database");
-var Order = require("../Order/order");
+var Order = require("../Order/Order");
 
 function User(name, email, password) {
   this.name = name;
