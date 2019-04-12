@@ -12,9 +12,14 @@ Admin.prototype = Object.create(User.prototype);
 Admin.prototype.constructor = Admin;
 
 Admin.prototype.readAllUsers = function() {
-  var userArray = [];
+  console.log("Reading...");
   var len = db.usersDB.length;
+  if (len === 0) {
+    console.log("Users DB is empty");
+    return "Users DB is empty";
+  }
 
+  var userArray = [];
   for (var i = 0; i < len; i++) {
     userArray.push(db.usersDB[i]);
   }
@@ -24,18 +29,15 @@ Admin.prototype.readAllUsers = function() {
 };
 
 Admin.prototype.deleteUser = function(name) {
-  console.log(this.isAdmin);
-
-  var len = db.usersDB.length;
-
-  for (var i = 0; i < len; i++) {
-    if (db.usersDB[i].name === name) {
-      db.usersDB.splice(i, 1);
-      console.log("User deleted");
-      break;
-    }
+  var foundUser = this.searchUser(name);
+  if (foundUser) {
+    console.log("User found");
+    db.usersDB.splice(foundUser.id, 1);
+    console.log("User deleted");
+    return name + " has been deleted";
   }
-  return name + " has been deleted";
+  console.log("Person does not exist");
+  return "Person does not exist";
 };
 
 Admin.prototype.deleteAllUsers = function() {
