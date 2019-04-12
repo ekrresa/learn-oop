@@ -1,5 +1,5 @@
-var User = require("../User/user");
-var Admin = require("../User/admin");
+var User = require("../User/User");
+var Admin = require("../User/Admin");
 var db = require("../database");
 
 describe("Admin Object Tests", function() {
