@@ -1,0 +1,53 @@
+var db = require("../database");
+
+function Order() {
+  var now = new Date();
+
+  this.date = now.toDateString();
+  this.time = now.toTimeString().split(" ")[0];
+  this.id = db.ordersDB.length;
+}
+
+Order.prototype = {
+  constructor: Order,
+  createOrder: function() {
+    return new Order();
+  },
+  readAll: function() {
+    return db.ordersDB;
+  },
+  readOne: function(id) {
+    if (db.ordersDB[id]) {
+      var foundOrder = db.ordersDB[id];
+      return foundOrder;
+    }
+    return false;
+  },
+  update: function(id, prop, info) {
+    var foundOrder = Order.prototype.readOne(id);
+
+    if (foundOrder && foundOrder.hasOwnProperty(prop)) {
+      if (prop === "products") {
+        foundOrder[prop] = info;
+        return foundOrder;
+      }
+      return "Only products can be edited";
+    }
+    return false;
+  },
+  deleteOne: function(id) {
+    var foundOrder = Order.prototype.readOne(id);
+
+    if (foundOrder) {
+      db.ordersDB.splice(foundOrder.id, 1);
+      return true;
+    }
+
+    return false;
+  },
+  deleteAll: function() {
+    db.ordersDB.length = 0;
+  }
+};
+
+module.exports = Order;
