@@ -6,7 +6,6 @@ function Order() {
   this.date = now.toDateString();
   this.time = now.toTimeString().split(" ")[0];
   this.id = db.ordersDB.length;
-  // this.products = Array.prototype.slice.call(arguments);
 }
 
 Order.prototype = {
@@ -18,13 +17,11 @@ Order.prototype = {
     return db.ordersDB;
   },
   readOne: function(id) {
-    var len = db.ordersDB.length;
-    for (var i = 0; i < len; i++) {
-      if (db.ordersDB[i].id === id) {
-        var foundOrder = db.ordersDB[i];
-      }
+    if (db.ordersDB[id]) {
+      var foundOrder = db.ordersDB[id];
+      return foundOrder;
     }
-    return foundOrder;
+    return false;
   },
   update: function(id, prop, info) {
     var foundOrder = Order.prototype.readOne(id);

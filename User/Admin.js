@@ -55,10 +55,13 @@ Admin.prototype.readAllOrders = function() {
 
 Admin.prototype.readOneOrder = function(id) {
   console.log("Reading...");
-
   var foundOrder = Order.prototype.readOne(id);
-  console.log("Order found");
-  return foundOrder;
+  if (foundOrder) {
+    console.log("Order found");
+    return foundOrder;
+  }
+  console.log("Order does not exist");
+  return "Order does not exist";
 };
 
 Admin.prototype.editOrder = function(id, prop, info) {
