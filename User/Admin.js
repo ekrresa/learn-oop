@@ -60,17 +60,20 @@ Admin.prototype.readOneOrder = function(id) {
 };
 
 Admin.prototype.editOrder = function(id, prop, info) {
-  var newOrder = Order.prototype.update(id, prop, info);
-  console.log(newOrder);
+  var adjustedOrder = Order.prototype.update(id, prop, info);
+  console.log(adjustedOrder);
+  return adjustedOrder;
 };
 
 Admin.prototype.deleteOrder = function(id) {
+  console.log("Deleting order...");
   var foundOrder = Order.prototype.deleteOne(id);
   if (foundOrder) {
     console.log("Order deleted");
-    return;
+    return "Order deleted";
   }
-  return console.log("Order not found");
+  console.log("Order not found");
+  return "Order not found";
 };
 
 Admin.prototype.deleteAllOrders = function() {
