@@ -36,15 +36,14 @@ Order.prototype = {
     return false;
   },
   deleteOne: function(id) {
-    var len = db.ordersDB.length;
+    var foundOrder = Order.prototype.readOne(id);
 
-    for (var i = 0; i < len; i++) {
-      if (db.ordersDB[i].id === id) {
-        var foundOrder = db.ordersDB.splice(i, 1);
-        break;
-      }
+    if (foundOrder) {
+      db.ordersDB.splice(foundOrder.id, 1);
+      return true;
     }
-    return foundOrder;
+
+    return false;
   },
   deleteAll: function() {
     db.ordersDB.length = 0;
