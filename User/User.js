@@ -1,5 +1,5 @@
-var db = require("../database"); //Import Database
-var Order = require("../Order/Order"); //Import Order DB
+var db = require("../database");
+var Order = require("../Order/Order");
 
 // User constructor function
 function User(name, email, password) {
@@ -64,7 +64,7 @@ User.prototype = {
       console.log("Order failed");
       return "Valid order needs products";
     }
-    var newOrder = Order.prototype.createOrder();
+    var newOrder = Order.createOrder();
     newOrder.user_id = this.id;
     // Converts arguments to array
     newOrder.products = Array.prototype.slice.call(arguments);
