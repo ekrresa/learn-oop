@@ -29,7 +29,7 @@ Order.readOne = function(id) {
 
 //Edit Order (Only products are editable)
 Order.update = function(id, prop, info) {
-  var foundOrder = Order.prototype.readOne(id);
+  var foundOrder = Order.readOne(id);
 
   if (foundOrder && foundOrder.hasOwnProperty(prop)) {
     if (prop === "products") {
@@ -43,7 +43,7 @@ Order.update = function(id, prop, info) {
 
 // Find and delete order
 Order.deleteOne = function(id) {
-  var foundOrder = Order.prototype.readOne(id);
+  var foundOrder = Order.readOne(id);
 
   if (foundOrder) {
     db.orders.splice(foundOrder.id, 1);

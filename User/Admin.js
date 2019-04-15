@@ -5,7 +5,6 @@ var Order = require("../Order/Order");
 function Admin(name, email, password) {
   User.call(this, name, email, password);
   this.isAdmin = true;
-  db.usersDB[this.id].isAdmin = this.isAdmin;
 }
 
 Admin.prototype = Object.create(User.prototype);
@@ -13,23 +12,22 @@ Admin.prototype.constructor = Admin;
 
 Admin.prototype.readAllUsers = function() {
   console.log("Reading...");
-  var len = db.usersDB.length;
+  var len = db.users.length;
   if (len === 0) {
     console.log("Users DB is empty");
     return "Users DB is empty";
   }
 
-  var userArray = db.usersDB;
-  console.log("Users read successfully", userArray);
+  console.log("Users read successfully", db.users);
 
-  return userArray;
+  return db.users;
 };
 
 Admin.prototype.deleteUser = function(name) {
   var foundUser = this.searchUser(name);
   if (foundUser) {
     console.log("User found");
-    db.usersDB.splice(foundUser.id, 1);
+    db.users.splice(foundUser.id, 1);
     console.log("User deleted");
     return name + " has been deleted";
   }
@@ -38,24 +36,24 @@ Admin.prototype.deleteUser = function(name) {
 };
 
 Admin.prototype.deleteAllUsers = function() {
-  if (db.usersDB.length === 0) {
+  if (db.users.length === 0) {
     console.log("Users DB is already empty");
     return "No users presently";
   }
-  db.usersDB.length = 0;
+  db.users.length = 0;
   console.log("All users deleted");
   return "All users deleted";
 };
 
 Admin.prototype.readAllOrders = function() {
   console.log("Reading orders...");
-  var orderArray = Order.prototype.readAll();
+  var orderArray = Order.readAll();
   return orderArray;
 };
 
 Admin.prototype.readOneOrder = function(id) {
   console.log("Reading...");
-  var foundOrder = Order.prototype.readOne(id);
+  var foundOrder = Order.readOne(id);
   if (foundOrder) {
     console.log("Order found");
     return foundOrder;
@@ -65,7 +63,7 @@ Admin.prototype.readOneOrder = function(id) {
 };
 
 Admin.prototype.editOrder = function(id, prop, info) {
-  var result = Order.prototype.update(id, prop, info);
+  var result = Order.update(id, prop, info);
   if (result === "Only products can be edited") {
     console.log("Only products can be edited");
     return "Only products can be edited";
@@ -80,7 +78,7 @@ Admin.prototype.editOrder = function(id, prop, info) {
 
 Admin.prototype.deleteOrder = function(id) {
   console.log("Deleting order...");
-  var foundOrder = Order.prototype.deleteOne(id);
+  var foundOrder = Order.deleteOne(id);
   if (foundOrder) {
     console.log("Order deleted");
     return "Order deleted";
@@ -90,7 +88,7 @@ Admin.prototype.deleteOrder = function(id) {
 };
 
 Admin.prototype.deleteAllOrders = function() {
-  Order.prototype.deleteAll();
+  Order.deleteAll();
   return console.log("Order DB emptied");
 };
 
