@@ -1,7 +1,7 @@
-var usersDB = [];
-var ordersDB = [];
+var users = [];
+var orders = [];
 
 module.exports = {
-  usersDB,
-  ordersDB
+  users,
+  orders
 };
